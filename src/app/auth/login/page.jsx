@@ -19,6 +19,8 @@ import {
     At,
     ShieldKeyhole,
 } from "@gravity-ui/icons";
+import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const [error, setError] = useState("");
@@ -34,15 +36,19 @@ const Login = () => {
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
 
-        console.log(formData);
-        console.log(user);
-        // await authClient.signUp.email({
-        // ...user,
-        // plan: 'free',
-        // });
+        const result = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+            callbackURL: "/",
+            });
 
-        // redirect('/')
-    };
+        if (result?.error) {
+        toast.error(result.error.message || "Login failed!");
+        return;
+        }
+
+        toast.success("Login successful!");
+};
     return (
         <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950 px-4">
             <Card className="w-full max-w-md p-6 shadow-sm border border-zinc-200 dark:border-zinc-800">

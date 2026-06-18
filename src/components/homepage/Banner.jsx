@@ -82,7 +82,7 @@ const Banner = () => {
                             src={banner.image}
                             fill
                             alt={banner.title}
-                            className="object-cover scale-105"
+                            className="object-cover "
                             priority={banner.id === 1}
                             />
 

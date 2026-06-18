@@ -1,7 +1,12 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import dns from 'node:dns'
+dns.setServers(['8.8.8.8','8.8.4.4'])
+
+
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,6 +26,11 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
+
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
       </body>
     </html>
   );

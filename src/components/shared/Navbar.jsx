@@ -1,11 +1,16 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { Link, Button } from "@heroui/react";
+import { Link, Button, Label, Dropdown, Avatar } from "@heroui/react";
 import Image from "next/image";
 import { Sun, Moon } from "@gravity-ui/icons";
 import { GiBus } from "react-icons/gi";
 import Logo from "./Logo";
+import { authClient } from "@/lib/auth-client";
+import { usePathname } from "next/navigation";
+import { BiLogOut } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
+import { MdDashboard } from "react-icons/md";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,11 +19,13 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
   const isLoggedIn = true;
 
-  const user = {
-    name: "Israt",
-    avatar: "https://i.pravatar.cc/40"
-  };
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  const pathName = usePathname();
 
+  // if(pathName.includes('dashboard')){
+  //   return null;
+  // }
   // Theme apply
   useEffect(() => {
     const root = document.documentElement;
@@ -45,6 +52,10 @@ const Navbar = () => {
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
+  const handleSignOut = async () => {
+    await authClient.signOut();
   };
 
   return (
@@ -102,63 +113,74 @@ const Navbar = () => {
             </button>
 
             {/* LOGIN / USER */}
-            {!isLoggedIn ? (
+            {!user && (
               <>
-                <Link href="/login">
+                <Link href="/auth/login">
                     <Button size="sm">
                         Login
                     </Button>
                 </Link>
-                <Link href="/register">
+                <Link href="auth//registration">
                     <Button size="sm">
                         Register
                     </Button>
                 </Link>
               </>
-            ) : (
-              <div className="relative">
-
-                {/* PROFILE BUTTON */}
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setOpenProfile(!openProfile);
-                  }}
-                  className="flex items-center gap-2 cursor-pointer"
-                >
-                  <Image
-                    src="/user.jpg"
-                    width={32}
-                    height={32}
-                    alt="avatar"
-                    className="rounded-full"
-                  />
-                  <span className="hidden md:block dark:text-white">{user.name}</span>
-                </div>
-
-                {/* DROPDOWN */}
-                {openProfile && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-900 border shadow rounded z-50">
-
-                    <Link
-                      href="/profile"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
-                    >
-                      My Profile
-                    </Link>
-
-                    <Link>
-                        <button className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-red-500">
-                            Logout
-                        </button>
-                    </Link>
-
+            ) } 
+            {user && (
+            <div className="hidden items-center gap-4 md:flex">
+              <Dropdown>
+                <Dropdown.Trigger className="rounded-full flex gap-2 items-center">
+                  <Avatar size="sm" aria-label="Menu">
+                    <Avatar.Image
+                      referrerPolicy="no-referrer"
+                      alt="John Doe"
+                      src={user?.image}
+                    />
+                    <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
+                  </Avatar>
+                  <p>{user?.name}</p>
+                </Dropdown.Trigger>
+                <Dropdown.Popover>
+                  <div className="px-3 pt-3 pb-1">
+                    <div className="flex items-center gap-2">
+                      <Avatar size="sm">
+                        <Avatar.Image alt={user?.name} src={user?.image} />
+                        <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+                      </Avatar>
+                      <div className="flex flex-col gap-0">
+                        <p className="text-sm leading-5 font-medium">
+                          {user?.name}
+                        </p>
+                        <p className="text-xs leading-none text-muted">
+                          {user?.email}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                )}
+                  <Dropdown.Menu
+                    onAction={(key) => console.log(`Selected: ${key}`)}
+                  >
 
-              </div>
-            )}
+                    <Dropdown.Item id="copy-link" textValue="Copy link">
+                      <CgProfile />
+                      <Label>Profile</Label>
+                    </Dropdown.Item>
 
+                    <Dropdown.Item
+                      id="delete-file"
+                      textValue="Delete file"
+                      variant="danger"
+                      onClick={handleSignOut}
+                    >
+                      <BiLogOut />
+                      <Label>Logout</Label>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown.Popover>
+              </Dropdown>
+            </div>
+          )}
           </div>
         </header>
 

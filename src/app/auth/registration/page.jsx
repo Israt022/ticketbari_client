@@ -10,7 +10,7 @@ import {
     InputGroup,
     Input,
 } from "@heroui/react";
-import { Description, Radio, RadioGroup } from "@heroui/react";
+import { Radio, RadioGroup } from "@heroui/react";
 
 import {
     Eye,
@@ -19,6 +19,9 @@ import {
     At,
     ShieldKeyhole,
 } from "@gravity-ui/icons";
+import { authClient } from "@/lib/auth-client";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
     // Form fields
@@ -40,15 +43,14 @@ const RegisterPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
-
-        console.log(formData);
-        console.log(user);
-        // await authClient.signUp.email({
-        // ...user,
-        // plan: 'free',
-        // });
-
-        // redirect('/')
+        await authClient.signUp.email({
+        ...user,
+        });
+        if(!user){
+           toast.error('Something went wrong') 
+        }
+        toast.success("Registration successful!")
+        redirect('/')
     };
 
     return (
