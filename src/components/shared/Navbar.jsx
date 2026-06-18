@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation";
 import { BiLogOut } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { MdDashboard } from "react-icons/md";
+import ShareButton from "./ShareButton";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,7 +74,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
 
             <button
-              className="md:hidden"
+              className="md:hidden dark:text-white"
               onClick={(e) => {
                 e.stopPropagation();
                 setIsMenuOpen(!isMenuOpen);
@@ -83,7 +84,9 @@ const Navbar = () => {
             </button>
 
             {/* LOGO */}
-            <Logo />
+            <Link href="/">
+              <Logo />
+            </Link>
 
             </div>
 
@@ -114,18 +117,14 @@ const Navbar = () => {
 
             {/* LOGIN / USER */}
             {!user && (
-              <>
+              <div className="hidden lg:block lg:flex lg:gap-3">
                 <Link href="/auth/login">
-                    <Button size="sm">
-                        Login
-                    </Button>
+                    <ShareButton btn={"Login"}/>
                 </Link>
                 <Link href="auth//registration">
-                    <Button size="sm">
-                        Register
-                    </Button>
+                    <ShareButton btn={"Register"} />
                 </Link>
-              </>
+              </div>
             ) } 
             {user && (
             <div className="hidden items-center gap-4 md:flex">
@@ -190,6 +189,31 @@ const Navbar = () => {
             <Link href="/">Home</Link>
             <Link href="/tickets">All Tickets</Link>
             <Link href="/dashboard">Dashboard</Link>
+            {
+              user && (
+                <div>
+                    <p>{user?.name}</p>
+                    <Link href="/auth/login"
+                      onClick={handleSignOut}
+                    >
+                      <ShareButton btn={"Logout"} />
+                    </Link>
+                </div>
+              )
+            }
+            {
+              !user && (
+                <div className="flex gap-3">
+                <Link href="/auth/login">
+                    <ShareButton btn={"Login"}/>
+                </Link>
+                <Link href="/auth/registration">
+                    <ShareButton btn={"Register"}
+                    />
+                </Link>
+              </div>
+              )
+            }
           </div>
         )}
 
