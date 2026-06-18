@@ -147,9 +147,11 @@ const Navbar = () => {
                       My Profile
                     </Link>
 
-                    <button className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800">
-                      Logout
-                    </button>
+                    <Link>
+                        <button className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 text-red-500">
+                            Logout
+                        </button>
+                    </Link>
 
                   </div>
                 )}
