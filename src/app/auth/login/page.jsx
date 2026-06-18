@@ -11,6 +11,7 @@ import {
     Input,
 } from "@heroui/react";
 import { Description, Radio, RadioGroup } from "@heroui/react";
+import {Icon} from "@iconify/react";
 
 import {
     Eye,
@@ -19,7 +20,7 @@ import {
     At,
     ShieldKeyhole,
 } from "@gravity-ui/icons";
-import { authClient } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const Login = () => {
@@ -48,7 +49,13 @@ const Login = () => {
         }
 
         toast.success("Login successful!");
-};
+    };
+
+    const handleGoogleSignin = async()=>{
+        await signIn.social({
+            provider: "google",
+        });
+    }
     return (
         <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-zinc-950 px-4">
             <Card className="w-full max-w-md p-6 shadow-sm border border-zinc-200 dark:border-zinc-800">
@@ -166,6 +173,25 @@ const Login = () => {
                     >
                         Sign In
                     </Button>
+                    {/* google login */}
+                    {/* Divider */}
+                    <div className="relative my-2">
+                        <div className="absolute inset-0 flex items-center">
+                            <span className="w-full border-t border-zinc-200 dark:border-zinc-800" />
+                        </div>
+
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-white dark:bg-zinc-950 px-3 text-white">
+                            Or continue with
+                            </span>
+                        </div>
+                    </div>
+
+                        {/* Google Login */}
+                        <Button onClick={handleGoogleSignin} className="w-full" variant="tertiary">
+                            <Icon icon="devicon:google" />
+                            Sign in with Google
+                        </Button>
 
                     {/* Footer */}
                     <div className="text-center pt-4 border-t border-zinc-100 dark:border-zinc-800 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
