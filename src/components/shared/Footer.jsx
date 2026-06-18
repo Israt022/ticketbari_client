@@ -1,9 +1,16 @@
+'use client'
+
 import { Link } from "@heroui/react";
 import Logo from "./Logo";
 import { BsStripe } from "react-icons/bs";
 import { GrStripe } from "react-icons/gr";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+  const pathName = usePathname();
+  if(pathName.includes('dashboard')){
+    return null;
+  }
   return (
     <footer className="bg-gray-100 dark:bg-gray-950 text-gray-700 dark:text-gray-300 mt-10">
 

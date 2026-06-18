@@ -24,7 +24,9 @@ export default function RootLayout({ children }) {
       className={`${inter.className} h-full antialiased`}    >
       <body>
         <Navbar />
-        {children}
+        <main className=" min-h-screen">
+          {children}
+        </main>
         <Footer />
 
         <Toaster

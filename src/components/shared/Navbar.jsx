@@ -23,10 +23,8 @@ const Navbar = () => {
   const { data: session } = authClient.useSession();
   const user = session?.user;
   const pathName = usePathname();
-
-  // if(pathName.includes('dashboard')){
-  //   return null;
-  // }
+  // console.log(pathName);
+  
   // Theme apply
   useEffect(() => {
     const root = document.documentElement;
@@ -50,6 +48,10 @@ const Navbar = () => {
       window.removeEventListener("click", handleClickOutside);
     };
   }, [openProfile]);
+
+  if(pathName.includes('dashboard')){
+    return null;
+  }
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
@@ -138,7 +140,7 @@ const Navbar = () => {
                     />
                     <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
                   </Avatar>
-                  <p>{user?.name}</p>
+                  <p className="dark:text-white">{user?.name}</p>
                 </Dropdown.Trigger>
                 <Dropdown.Popover>
                   <div className="px-3 pt-3 pb-1">
@@ -148,7 +150,7 @@ const Navbar = () => {
                         <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
                       </Avatar>
                       <div className="flex flex-col gap-0">
-                        <p className="text-sm leading-5 font-medium">
+                        <p className="text-sm dark:text-white leading-5 font-medium">
                           {user?.name}
                         </p>
                         <p className="text-xs leading-none text-muted">
@@ -191,8 +193,8 @@ const Navbar = () => {
             <Link href="/dashboard">Dashboard</Link>
             {
               user && (
-                <div>
-                    <p>{user?.name}</p>
+                <div className="flex flex-col justify-center gap-2">
+                    <p className="dark:text-white">{user?.name}</p>
                     <Link href="/auth/login"
                       onClick={handleSignOut}
                     >
