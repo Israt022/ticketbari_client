@@ -10,7 +10,7 @@ import LogoutButton from "../shared/LogoutButton";
 
 const DashboardSidebar = async() => {
     const user = await getUserSession();
-
+console.log(user);
     const vendorNavLinks = [
         { icon: House, href: "/dashboard/vendor", label: "Vendor Profile" },
         { icon: Magnifier, href: "/dashboard/vendor/add/ticket", label: "Add Ticket" },
@@ -37,20 +37,19 @@ const DashboardSidebar = async() => {
         vendor : vendorNavLinks,
         admin : adminNavLinks
     }
-    // const handleSignOut = async () => {
-    // await authClient.signOut();
-    // };
     
     const navItems = navLinksMap[user?.role  || 'user']
-   
-
+   const role = user?.role;
+   console.log(role);
     const navContent = (
         <div className="flex h-full flex-col">
             
             {/* Logo */}
-            <div className="border-b border-purple-500/30 pb-5">
-            <Logo />
-            </div>
+            <Link href={'/'}>
+                <div className="border-b border-purple-500/30 pb-5">
+                <Logo />
+                </div>
+            </Link>
 
             {/* Navigation */}
             <nav className="mt-6 flex flex-1 flex-col gap-2">
