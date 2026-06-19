@@ -43,13 +43,16 @@ const RegisterPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
-        await authClient.signUp.email({
+        const result = await authClient.signUp.email({
         ...user,
         });
-        if(!user){
-           toast.error('Something went wrong') 
+
+        if (result?.error) {
+            toast.error(result.error.message || "Registration failed!");
+            return;
         }
-        toast.success("Registration successful!")
+
+        toast.success("Registration successful!");
         redirect('/')
     };
 

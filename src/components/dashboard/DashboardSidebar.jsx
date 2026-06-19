@@ -10,7 +10,7 @@ import LogoutButton from "../shared/LogoutButton";
 
 const DashboardSidebar = async() => {
     const user = await getUserSession();
-console.log(user);
+// console.log(user);
     const vendorNavLinks = [
         { icon: House, href: "/dashboard/vendor", label: "Vendor Profile" },
         { icon: Magnifier, href: "/dashboard/vendor/add/ticket", label: "Add Ticket" },
