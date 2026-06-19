@@ -1,9 +1,9 @@
-import React from 'react';
+import UserProfilePage from "./profile/page";
 
 const UserDashboardPage = () => {
     return (
         <div>
-            user
+            <UserProfilePage />
         </div>
     );
 };

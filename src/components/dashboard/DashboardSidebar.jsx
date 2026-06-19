@@ -13,8 +13,8 @@ const DashboardSidebar = async() => {
 // console.log(user);
     const vendorNavLinks = [
         { icon: House, href: "/dashboard/vendor", label: "Vendor Profile" },
-        { icon: Magnifier, href: "/dashboard/vendor/add/ticket", label: "Add Ticket" },
-        { icon: Bell, href: "/dashboard/vendor/tickets", label: "My Added Tickets" },
+        { icon: Magnifier, href: "/dashboard/vendor/add-ticket", label: "Add Ticket" },
+        { icon: Bell, href: "/dashboard/vendor/my-added-ticket", label: "My Added Tickets" },
         { icon: Briefcase, href: "/dashboard/vendor/request/booking", label: "Requested Bookings" },
         { icon: Envelope, href: "/dashboard/vendor/ticket_lists", label: "Revenue Overview " },
     ]
@@ -40,7 +40,7 @@ const DashboardSidebar = async() => {
     
     const navItems = navLinksMap[user?.role  || 'user']
    const role = user?.role;
-   console.log(role);
+
     const navContent = (
         <div className="flex h-full flex-col">
             
