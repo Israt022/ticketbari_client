@@ -24,7 +24,7 @@ export const addTicket = async(ticket) => {
 // UPDATE ticket
 export const updateTicket = async (id, updateData) => {
     const token = await getTokenServer();
-console.log("Token ",token);
+    // console.log("Token ",token);
     const res = await fetch(`${baseUrl}/vendor/my/tickets/${id}`, {
         method: "PATCH",
         headers: {
@@ -45,6 +45,34 @@ export const deleteTicket = async(ticketId) =>{
         method : 'DELETE',
         headers : {
             'content-type' : 'application/json',
+            authorization: `Bearer ${token}`,
+        },
+    });
+    const data = await res.json();
+    return data;
+}
+
+// Approve ticket 
+export const approveTicket = async (id) => {
+    const token = await getTokenServer();
+    // console.log("Token ",token);
+    const res = await fetch(`${baseUrl}/admin/tickets/approve/${id}`, {
+        method: "PATCH",
+        headers: {
+            authorization: `Bearer ${token}`,
+        },
+    });
+
+    const data = await res.json();
+    return data;
+};
+
+// Reject ticket
+export const rejectTicket = async(ticketId) =>{
+    const token = await getTokenServer();
+    const res = await fetch(`${baseUrl}/admin/tickets/reject/${ticketId}`,{
+        method : 'PATCH',
+        headers : {
             authorization: `Bearer ${token}`,
         },
     });

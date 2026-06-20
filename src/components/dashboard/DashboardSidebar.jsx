@@ -1,7 +1,7 @@
 import {Bell, Bookmark, Briefcase, CreditCard, Envelope, FileText, Gear, House, LayoutSideContentLeft, Magnifier, Person} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
 import Link from "next/link";
-import { Building, Users } from "lucide-react";
+import { Building, Ticket, Users } from "lucide-react";
 import { getUserSession } from "@/lib/core/session";
 import Logo from "../shared/Logo";
 import { BiLogOut } from "react-icons/bi";
@@ -15,8 +15,8 @@ const DashboardSidebar = async() => {
         { icon: House, href: "/dashboard/vendor", label: "Vendor Profile" },
         { icon: Magnifier, href: "/dashboard/vendor/add-ticket", label: "Add Ticket" },
         { icon: Bell, href: "/dashboard/vendor/my-added-ticket", label: "My Added Tickets" },
-        { icon: Briefcase, href: "/dashboard/vendor/request/booking", label: "Requested Bookings" },
-        { icon: Envelope, href: "/dashboard/vendor/ticket_lists", label: "Revenue Overview " },
+        { icon: Briefcase, href: "/dashboard/vendor/requested_bookings", label: "Requested Bookings" },
+        { icon: Envelope, href: "/dashboard/vendor/revenue", label: "Revenue Overview " },
     ]
 
     const userNavLinks = [
@@ -27,7 +27,7 @@ const DashboardSidebar = async() => {
 
     const adminNavLinks = [
         { icon: House, href: "/dashboard/admin", label: "Admin Profile" },
-        { icon: Users, href: "/dashboard/admin/manage/ticket", label: "Manage Tickets" },
+        { icon: Ticket, href: "/dashboard/admin/manage_tickets", label: "Manage Tickets" },
         { icon: Building, href: "/dashboard/admin/manage_user", label: "Manage Users" },
         { icon: Briefcase, href: "/dashboard/admin/advertise_ticket", label: "Advertise Tickets" },
     ];

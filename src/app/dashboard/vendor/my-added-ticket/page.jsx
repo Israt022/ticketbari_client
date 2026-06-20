@@ -1,9 +1,9 @@
 import TicketCard from '@/components/dashboard/vendor/TicketCard';
-import { getTickets } from '@/lib/api/ticket';
+import { getVendorTickets } from '@/lib/api/ticket';
 import React from 'react';
 
 const MyAddedTicketPage = async() => {
-    const tickets = await getTickets();
+    const tickets = await getVendorTickets();
     // console.log(tickets);
      if (!tickets?.length) {
     return (
