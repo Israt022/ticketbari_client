@@ -1,4 +1,4 @@
-// import { getUserToken } from "./session";
+import { getUserToken } from "./session";
 
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
@@ -16,13 +16,14 @@ export const serverMutation = async (path, data, method = 'POST') => {
         method: method,
         headers: {
             'Content-Type': 'application/json',
-            // ... await authHeader()
+            ... await authHeader()
         },
         body: JSON.stringify(data),
     });
     
     return handleStatusCode(res);
 }
+
 
 // handle 401, 404, 403
 const handleStatusCode = (res) => {

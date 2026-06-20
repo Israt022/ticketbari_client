@@ -13,13 +13,13 @@ const UpdateUserProfile = () => {
         // const image = e.target.image.value;
         const imageFile = e.target.image.files[0];
         const image = await imgUpload(imageFile);
-        console.log(image);
+        // console.log(image);
 
         await authClient.updateUser({
             name,
             image : image?.url,
         })
-        console.log({name,image});
+        // console.log({name,image});
     }
     return (
         <Modal>

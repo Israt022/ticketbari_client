@@ -4,7 +4,7 @@ import React from 'react';
 
 const MyAddedTicketPage = async() => {
     const tickets = await getTickets();
-    console.log(tickets);
+    // console.log(tickets);
      if (!tickets?.length) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center text-center">

@@ -1,8 +1,14 @@
+'use client'
+
 import Image from "next/image";
 import { Button } from "@heroui/react";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
+import UpdateTicketModal from "./UpdateTicketModal";
+import { useState } from "react";
+import DeleteTicket from "./DeleteTicket";
 
 const TicketCard = ({ ticket }) => {
+  const [open, setOpen] = useState(false);
   const isRejected = ticket.status === "rejected";
 
   const statusColor = {
@@ -14,7 +20,7 @@ const TicketCard = ({ ticket }) => {
   return (
     <div className="rounded-xl border bg-white dark:bg-zinc-900 overflow-hidden">
       <Image
-        src={ticket?.image}
+        src={ticket?.image || '/travelDefault.jpg'}
         alt={ticket.ticketTitle}
         width={500}
         height={300}
@@ -68,22 +74,13 @@ const TicketCard = ({ ticket }) => {
         </div>
 
         <div className="flex gap-2 pt-2">
-          <Button
-            size="sm"
-            isDisabled={isRejected}
-            startContent={<FiEdit2 />}
-          >
-            Update
-          </Button>
-
-          <Button
-            size="sm"
-            color="danger"
-            isDisabled={isRejected}
-            startContent={<FiTrash2 />}
-          >
-            Delete
-          </Button>
+          <UpdateTicketModal
+          //   isOpen={open}
+          // onClose={() => setOpen(false)}
+          ticket={ticket}
+          isRejected={isRejected}/>
+          {/* <button>Delete</button> */}
+          <DeleteTicket ticketId={ticket._id} />
         </div>
       </div>
     </div>
