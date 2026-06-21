@@ -123,7 +123,7 @@ const Navbar = () => {
                 <Link href="/auth/login">
                     <ShareButton btn={"Login"}/>
                 </Link>
-                <Link href="auth//registration">
+                <Link href="/auth/registration">
                     <ShareButton btn={"Register"} />
                 </Link>
               </div>

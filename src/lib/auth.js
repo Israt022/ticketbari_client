@@ -1,29 +1,35 @@
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import { jwt } from "better-auth/plugins";
+import { admin, jwt } from "better-auth/plugins";
 
 const client = new MongoClient(process.env.MONGODB_URI);
-const db = client.db('ticket_bari');
+const db = client.db("ticket_bari");
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, {
     // Optional: if you don't provide a client, database transactions won't be enabled.
-    client
+    client,
   }),
-  emailAndPassword: { 
-    enabled: true, 
-  }, 
+  emailAndPassword: {
+    enabled: true,
+  },
   socialProviders: {
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID, 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET, 
-        }, 
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     },
+  },
   user: {
     additionalFields: {
       role: {
+        type: "string",
         defaultValue: "user",
+      },
+      isFraud: {
+        type: "boolean",
+        defaultValue: false,
+        
       },
     },
   },
@@ -34,7 +40,5 @@ export const auth = betterAuth({
       maxAge: 60 * 24 * 60,
     },
   },
-  plugins :[
-    jwt(),
-  ],
+  plugins: [jwt(), admin()],
 });

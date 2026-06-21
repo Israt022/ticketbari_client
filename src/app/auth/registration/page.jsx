@@ -19,9 +19,9 @@ import {
     At,
     ShieldKeyhole,
 } from "@gravity-ui/icons";
-import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const RegisterPage = () => {
     // Form fields
@@ -43,8 +43,10 @@ const RegisterPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
+        console.log('User signup', user);
         const result = await authClient.signUp.email({
         ...user,
+        isFraud : false
         });
 
         if (result?.error) {

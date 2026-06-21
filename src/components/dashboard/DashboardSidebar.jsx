@@ -1,7 +1,7 @@
 import {Bell, Bookmark, Briefcase, CreditCard, Envelope, FileText, Gear, House, LayoutSideContentLeft, Magnifier, Person} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
 import Link from "next/link";
-import { Building, Ticket, Users } from "lucide-react";
+import { Building, Ticket, User, Users } from "lucide-react";
 import { getUserSession } from "@/lib/core/session";
 import Logo from "../shared/Logo";
 import { BiLogOut } from "react-icons/bi";
@@ -28,7 +28,7 @@ const DashboardSidebar = async() => {
     const adminNavLinks = [
         { icon: House, href: "/dashboard/admin", label: "Admin Profile" },
         { icon: Ticket, href: "/dashboard/admin/manage_tickets", label: "Manage Tickets" },
-        { icon: Building, href: "/dashboard/admin/manage_user", label: "Manage Users" },
+        { icon: User, href: "/dashboard/admin/manage_users", label: "Manage Users" },
         { icon: Briefcase, href: "/dashboard/admin/advertise_ticket", label: "Advertise Tickets" },
     ];
 
