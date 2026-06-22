@@ -10,6 +10,14 @@ export const getTickets = async() => {
 
     return data;
 }
+// get advertise all ticket 
+export const getAdvertiseTickets = async() => {
+    const res = await fetch(`${baseUrl}/advertise/tickets` 
+    );
+    const data = await res.json();
+
+    return data;
+}
 
 
 // get vendor ticket
