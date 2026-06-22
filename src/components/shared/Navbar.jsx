@@ -24,6 +24,8 @@ const Navbar = () => {
   const user = session?.user;
   const pathName = usePathname();
   // console.log(pathName);
+  // console.log(user,'frm homepage');
+  // console.log(user?.userRole,'frm role homepage');
   
   // Theme apply
   useEffect(() => {
@@ -96,7 +98,7 @@ const Navbar = () => {
           <ul className="hidden md:flex items-center gap-6 font-medium md:flex-row flex-col">
             <li><Link href="/">Home</Link></li>
             <li><Link href="/tickets">All Tickets</Link></li>
-            <li><Link href={`/dashboard/${user?.role}`}>Dashboard</Link></li>
+            <li><Link href={`/dashboard/${user?.userRole}`}>Dashboard</Link></li>
           </ul>
 
           {/* RIGHT */}
@@ -165,7 +167,7 @@ const Navbar = () => {
 
                     <Dropdown.Item id="copy-link" textValue="Copy link">
                       <CgProfile />
-                      <Link href={`/dashboard/${user?.role}`}>
+                      <Link href={`/dashboard/${user?.userRole}`}>
                         <Label>Profile</Label>
                       </Link>
                     </Dropdown.Item>
@@ -192,7 +194,7 @@ const Navbar = () => {
           <div className="md:hidden flex flex-col border-t p-4 space-y-2">
             <Link href="/">Home</Link>
             <Link href="/tickets">All Tickets</Link>
-            <Link href={`/dashboard/${user?.role}`}>Dashboard</Link>
+            <Link href={`/dashboard/${user?.userRole}`}>Dashboard</Link>
             {
               user && (
                 <div className="flex flex-col justify-center gap-2">

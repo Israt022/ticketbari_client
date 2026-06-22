@@ -43,9 +43,11 @@ const RegisterPage = () => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
-        console.log('User signup', user);
+        console.log('User signup', {...user,userRole : role});
+        delete user.role
         const result = await authClient.signUp.email({
         ...user,
+        userRole : role,
         isFraud : false
         });
 
@@ -177,7 +179,7 @@ const RegisterPage = () => {
                     <div className="flex flex-col gap-4">
                         <Label>Register As</Label>
                         <RadioGroup 
-                            name="role"
+                            name="userRole"
                             value={role}
                             onChange={setRole}
                             orientation="horizontal"

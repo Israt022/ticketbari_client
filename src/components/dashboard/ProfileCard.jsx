@@ -27,7 +27,7 @@ const ProfileCard = ({ user }) => {
             </p>
 
             <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-600 font-medium">
-              {user?.role}
+              {user?.userRole}
             </span>
           </div>
           </div>
@@ -41,7 +41,7 @@ const ProfileCard = ({ user }) => {
 
           <div className="border rounded-xl p-4">
             <p className="text-gray-500">Role</p>
-            <h4 className="font-semibold">{user?.role}</h4>
+            <h4 className="font-semibold">{user?.userRole}</h4>
           </div>
 
           <div className="border rounded-xl p-4">

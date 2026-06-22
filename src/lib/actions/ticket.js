@@ -79,3 +79,20 @@ export const rejectTicket = async(ticketId) =>{
     const data = await res.json();
     return data;
 }
+
+// advertise ticket 
+export const toggleAdvertise = async(id)=>{
+  const token = await getTokenServer();
+
+  const res = await fetch(
+    `${baseUrl}/admin/tickets/advertise/${id}`,
+    {
+      method: "PATCH",
+      headers:{
+        authorization:`Bearer ${token}`
+      }
+    }
+  );
+
+  return res.json();
+}

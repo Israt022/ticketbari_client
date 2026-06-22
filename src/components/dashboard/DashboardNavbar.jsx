@@ -7,6 +7,8 @@ import { Sun, Moon } from "@gravity-ui/icons";
 const DashboardNavbar = ({user}) => {
     const [theme, setTheme] = useState("light");
 
+    // console.log(user);
+
     useEffect(() => {
         const root = document.documentElement;
 

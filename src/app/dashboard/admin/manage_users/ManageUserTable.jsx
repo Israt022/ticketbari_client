@@ -65,14 +65,14 @@ const ManageUserTable = ({ users }) => {
                   <Table.Cell>
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        user.role === "admin"
+                        user.userRole === "admin"
                           ? "bg-purple-100 text-purple-700"
-                          : user.role === "vendor"
+                          : user.userRole === "vendor"
                           ? "bg-blue-100 text-blue-700"
                           : "bg-gray-100 text-gray-700"
                       }`}
                     >
-                      {user.role}
+                      {user.userRole}
                     </span>
                   </Table.Cell>
 
@@ -101,7 +101,7 @@ const ManageUserTable = ({ users }) => {
                         color="secondary"
                         variant="flat"
                         onPress={() => handleMakeAdmin(user.id)}
-                        isDisabled={user.role === "admin" || user.isFraud}
+                        isDisabled={user.userRole === "admin" || user.isFraud}
                       >
                         Make Admin
                       </Button>
@@ -118,7 +118,7 @@ const ManageUserTable = ({ users }) => {
                       </Button>
 
                       {/* Fraud */}
-                      {user.role === "vendor" &&
+                      {user.userRole === "vendor" &&
                         (user.isFraud ? (
                           <Button size="sm" color="danger" variant="flat" isDisabled>
                             Fraud

@@ -42,9 +42,11 @@ export default function AddTicketForm({ user }) {
             perks, 
             image : image.url,
             status: "pending",
+            isAdvertised: false,
         }
 
         const result = await addTicket(ticket);
+        console.log(result);
         if(!result){
             toast.error('Try again!');
             return;

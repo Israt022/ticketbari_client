@@ -1,15 +1,15 @@
+'use client';
 import {Bell, Bookmark, Briefcase, CreditCard, Envelope, FileText, Gear, House, LayoutSideContentLeft, Magnifier, Person} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
 import Link from "next/link";
 import { Building, Ticket, User, Users } from "lucide-react";
-import { getUserSession } from "@/lib/core/session";
 import Logo from "../shared/Logo";
 import { BiLogOut } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
 import LogoutButton from "../shared/LogoutButton";
 
-const DashboardSidebar = async() => {
-    const user = await getUserSession();
+const DashboardSidebar = ({user}) => {
+    // console.log(user,'dashboard sidebar');
 // console.log(user);
     const vendorNavLinks = [
         { icon: House, href: "/dashboard/vendor", label: "Vendor Profile" },
@@ -38,8 +38,8 @@ const DashboardSidebar = async() => {
         admin : adminNavLinks
     }
     
-    const navItems = navLinksMap[user?.role  || 'user']
-   const role = user?.role;
+    const navItems = navLinksMap[user?.userRole  || 'user']
+   const role = user?.userRole;
 
     const navContent = (
         <div className="flex h-full flex-col">
@@ -54,18 +54,23 @@ const DashboardSidebar = async() => {
             {/* Navigation */}
             <nav className="mt-6 flex flex-1 flex-col gap-2">
             {navItems.map((item) => (
+                // <Link
+                // key={item.label}
+                // href={item.href}
+                // className="
+                //     flex items-center gap-3
+                //     rounded-xl px-4 py-3
+                //     text-sm font-medium
+                //     transition-all duration-200
+                //     hover:bg-purple-500/10
+                //     hover:text-purple-600
+                // "
+                // >
                 <Link
-                key={item.label}
-                href={item.href}
-                className="
-                    flex items-center gap-3
-                    rounded-xl px-4 py-3
-                    text-sm font-medium
-                    transition-all duration-200
-                    hover:bg-purple-500/10
-                    hover:text-purple-600
-                "
-                >
+                    key={item.label}
+                    href={item.href}
+                    className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-purple-500/10 hover:text-purple-600"
+                    >
                 <item.icon className="size-5" />
                 {item.label}
                 </Link>

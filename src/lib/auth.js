@@ -22,7 +22,7 @@ export const auth = betterAuth({
   },
   user: {
     additionalFields: {
-      role: {
+      userRole: {
         type: "string",
         defaultValue: "user",
       },
@@ -40,5 +40,7 @@ export const auth = betterAuth({
       maxAge: 60 * 24 * 60,
     },
   },
-  plugins: [jwt(), admin()],
+  plugins: [jwt(),
+     admin()
+    ],
 });
