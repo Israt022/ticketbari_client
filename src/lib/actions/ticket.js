@@ -4,6 +4,21 @@ import { getTokenServer } from "../getTokenServer";
 
 const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
+// get ticket by id
+export const getTicketsById = async(id) =>{
+    const token = await getTokenServer();
+console.log(token);
+    const res = await fetch(`${baseUrl}/tickets/${id}`,{
+        headers:{
+            authorization : `Bearer ${token}` || ""
+        }
+    });
+    const data = await res.json();
+
+    return data || {};
+}
+
+
 // add ticket
 export const addTicket = async(ticket) => {
     const token = await getTokenServer();
