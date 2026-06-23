@@ -32,6 +32,11 @@ export default function AddTicketForm({ user }) {
     const handleSubmit = async(e) => {
         e.preventDefault();
 
+        if(user?.isFraud){
+          toast.error("Fraud vendors cannot add tickets");
+          return;
+        }
+
         const formData = new FormData(e.currentTarget);
 
         const data = Object.fromEntries(formData.entries());
@@ -56,12 +61,19 @@ export default function AddTicketForm({ user }) {
             router.push('/dashboard/vendor/my-added-ticket')
         }
     };
+    // console.log(user);
+    // console.log(user?.isFraud);
+    // console.log(typeof user?.isFraud);
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-black text-black dark:text-white py-6 md:py-10 px-3 md:px-4">
 
       <div className="max-w-3xl mx-auto bg-white dark:bg-[#0b0b0c] border border-gray-200 dark:border-zinc-800 rounded-2xl p-4 md:p-6">
-
+        {user?.isFraud && (
+          <div className="mb-4 rounded-lg border border-red-500 bg-red-100 p-4 text-red-700">
+            Fraud Vendor. You cannot add tickets.
+          </div>
+        )}
         {/* HEADER */}
         <div className="mb-6 border-b border-gray-200 dark:border-zinc-800 pb-4">
           <h1 className="text-xl md:text-2xl font-semibold">Add Ticket</h1>
@@ -201,8 +213,10 @@ export default function AddTicketForm({ user }) {
 
           {/* SUBMIT */}
           <div className="w-full mx-auto">
-            <Button type="submit" className={'w-full bg-gradient-to-r from-black/15 dark:from-white via-purple-400 to-blue-400'}>
-              Add Ticket
+            <Button type="submit" isDisabled={user?.isFraud} className={'w-full bg-gradient-to-r from-black/15 dark:from-white via-purple-400 to-blue-400'}>
+              {user?.isFraud
+                ? "Fraud Vendor"
+                : "Add Ticket"}
             </Button>
           </div>
 

@@ -7,7 +7,7 @@ import UpdateTicketModal from "./UpdateTicketModal";
 import { useState } from "react";
 import DeleteTicket from "./DeleteTicket";
 
-const TicketCard = ({ ticket }) => {
+const TicketCard = ({ ticket, user }) => {
   const [open, setOpen] = useState(false);
   const isRejected = ticket.status === "rejected";
 
@@ -19,6 +19,11 @@ const TicketCard = ({ ticket }) => {
 
   return (
     <div className="rounded-xl border bg-white dark:bg-zinc-900 overflow-hidden">
+      {user?.isFraud && (
+        <span className="px-2 py-1 rounded bg-red-500 text-white text-xs">
+          Fraud Vendor
+        </span>
+      )}
       <Image
         src={ticket?.image || '/travelDefault.jpg'}
         alt={ticket.ticketTitle}

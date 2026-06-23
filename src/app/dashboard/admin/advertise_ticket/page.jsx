@@ -1,11 +1,11 @@
-import { getTickets } from '@/lib/api/ticket';
+import { getAdminAllTickets, getTickets } from '@/lib/api/ticket';
 import React from 'react';
 import { AiOutlineBorderVerticle } from 'react-icons/ai';
 import { RiAdvertisementLine } from 'react-icons/ri';
 import AdvertiseTicketTable from './AdvertiseTicketTable';
 
 const AdvertiseTicketPage = async() => {
-    const tickets = await getTickets();
+    const tickets = await getAdminAllTickets();
     // console.log(tickets);
     return (
         <div className='flex flex-col space-y-3'>
