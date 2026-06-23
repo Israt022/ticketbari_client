@@ -5,30 +5,31 @@ import {
   Button,
 } from "@heroui/react";
 
-import { acceptBooking, rejectBooking } from "@/lib/actions/booking";
+// import { acceptBooking, rejectBooking } from "@/lib/actions/booking";
 import toast from "react-hot-toast";
 
 const RequestedBookingTable = ({ requests }) => {
 
   const handleAccept = async (id) => {
-    const res = await acceptBooking(id);
+    // const res = await acceptBooking(id);
 
-    if (!res?.acknowledged) {
-      toast.error(res?.message || "Failed to accept");
-      return;
-    }
+    // if (!res?.acknowledged) {
+    //   toast.error(res?.message || "Failed to accept");
+    //   return;
+    // }
+    console.log(id);
 
     toast.success("Booking accepted");
   };
 
   const handleReject = async (id) => {
-    const res = await rejectBooking(id);
+    // const res = await rejectBooking(id);
 
-    if (!res?.acknowledged) {
-      toast.error(res?.message || "Failed to reject");
-      return;
-    }
-
+    // if (!res?.acknowledged) {
+    //   toast.error(res?.message || "Failed to reject");
+    //   return;
+    // }
+    console.log(id);
     toast.success("Booking rejected");
   };
 
