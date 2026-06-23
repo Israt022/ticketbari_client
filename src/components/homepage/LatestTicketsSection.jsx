@@ -62,7 +62,9 @@ const LatestTicketsSection = ({ tickets }) => {
         viewport={{ once: true }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
       >
-        {tickets?.slice(0, 8).map((ticket) => (
+        {Array.isArray(tickets?.tickets) &&
+        tickets.tickets.slice(0, 8).map((ticket) => (
+        // tickets?.slice(0, 8).map((ticket) => (
           <motion.div
             key={ticket._id}
             variants={item}

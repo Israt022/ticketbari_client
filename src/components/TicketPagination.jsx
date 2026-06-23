@@ -1,17 +1,38 @@
 "use client";
 
-const TicketPagination = () => {
-  return (
-    <div className="flex justify-center gap-2 mt-10">
+const TicketPagination = ({
+  total,
+  page,
+  setPage,
+}) => {
 
-      {[1, 2, 3, 4, 5].map((page) => (
+  const totalPages = Math.ceil(total / 9);
+
+  return (
+    <div className="flex justify-center mt-10 gap-2">
+
+      <button
+        disabled={page === 1}
+        onClick={() => setPage(page - 1)}
+      >
+        Previous
+      </button>
+
+      {[...Array(totalPages)].map((_, i) => (
         <button
-          key={page}
-          className="px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 text-sm hover:bg-zinc-100 dark:hover:bg-zinc-800 transition"
+          key={i}
+          onClick={() => setPage(i + 1)}
         >
-          {page}
+          {i + 1}
         </button>
       ))}
+
+      <button
+        disabled={page === totalPages}
+        onClick={() => setPage(page + 1)}
+      >
+        Next
+      </button>
 
     </div>
   );
