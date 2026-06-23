@@ -2,17 +2,18 @@
 import {Bell, Bookmark, Briefcase, CreditCard, Envelope, FileText, Gear, House, LayoutSideContentLeft, Magnifier, Person} from "@gravity-ui/icons";
 import {Button, Drawer} from "@heroui/react";
 import Link from "next/link";
-import { Building, Ticket, User, Users } from "lucide-react";
+import { Building, History, List, Ticket, User, Users } from "lucide-react";
 import Logo from "../shared/Logo";
 import { BiLogOut } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
 import LogoutButton from "../shared/LogoutButton";
+import { CgProfile } from "react-icons/cg";
 
 const DashboardSidebar = ({user}) => {
     // console.log(user,'dashboard sidebar');
 // console.log(user);
     const vendorNavLinks = [
-        { icon: House, href: "/dashboard/vendor", label: "Vendor Profile" },
+        { icon: CgProfile, href: "/dashboard/vendor", label: "Vendor Profile" },
         { icon: Magnifier, href: "/dashboard/vendor/add-ticket", label: "Add Ticket" },
         { icon: Bell, href: "/dashboard/vendor/my-added-ticket", label: "My Added Tickets" },
         { icon: Briefcase, href: "/dashboard/vendor/requested_bookings", label: "Requested Bookings" },
@@ -20,13 +21,13 @@ const DashboardSidebar = ({user}) => {
     ]
 
     const userNavLinks = [
-        { icon: House, href: "/dashboard/user", label: "User Profile" },
-        { icon: Magnifier, href: "/dashboard/user/booking_lists", label: "My Booked Tickets" },
-        { icon: Bookmark, href: "/dashboard/user/transaction_history", label: "Transaction History" },
+        { icon: CgProfile, href: "/dashboard/user", label: "User Profile" },
+        { icon: List, href: "/dashboard/user/my-booking-tickets", label: "My Booked Tickets" },
+        { icon: History, href: "/dashboard/user/transaction_history", label: "Transaction History" },
     ];
 
     const adminNavLinks = [
-        { icon: House, href: "/dashboard/admin", label: "Admin Profile" },
+        { icon: CgProfile, href: "/dashboard/admin", label: "Admin Profile" },
         { icon: Ticket, href: "/dashboard/admin/manage_tickets", label: "Manage Tickets" },
         { icon: User, href: "/dashboard/admin/manage_users", label: "Manage Users" },
         { icon: Briefcase, href: "/dashboard/admin/advertise_ticket", label: "Advertise Tickets" },
