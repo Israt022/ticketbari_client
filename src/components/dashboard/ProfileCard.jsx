@@ -7,31 +7,31 @@ const ProfileCard = ({ user }) => {
       <div className="bg-white dark:bg-black rounded-2xl shadow-md border p-8">
 
 
-          <div className="flex justify-between">
-        <div className="flex flex-col md:flex-row items-center gap-6">
-            <Image
-            src={user?.image || "/user.jpg"}
-            alt={user?.name}
-            width={120}
-            height={120}
-            className="rounded-full border"
-          />
+          <div className="flex justify-between flex-wrap gap-2">
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <Image
+              src={user?.image || "/user.jpg"}
+              alt={user?.name}
+              width={120}
+              height={120}
+              className="rounded-full border"
+            />
 
-          <div className="space-y-2">
-            <h2 className="text-2xl font-bold">
-              {user?.name || 'user'}
-            </h2>
+              <div className="space-y-2">
+                <h2 className="text-2xl font-bold">
+                  {user?.name || 'user'}
+                </h2>
 
-            <p className="text-gray-500">
-              {user?.email}
-            </p>
+                <p className="text-gray-500">
+                  {user?.email}
+                </p>
 
-            <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-600 font-medium">
-              {user?.userRole}
-            </span>
-          </div>
-          </div>
-            <div>
+                <span className="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-600 font-medium">
+                  {user?.userRole}
+                </span>
+              </div>
+            </div>
+            <div className="self-center md:self-start">
                 <UpdateUserProfile />
             </div>
 

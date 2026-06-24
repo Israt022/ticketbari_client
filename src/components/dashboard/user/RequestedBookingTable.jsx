@@ -95,7 +95,8 @@ const RequestedBookingTable = ({ requests }) => {
                       size="sm"
                       isDisabled={
                         req.status === "accepted" ||
-                        req.status === "rejected"
+                        req.status === "rejected" || 
+                        req.status === "paid" 
                       }
                       className="bg-green-500 text-white"
                       onPress={() => handleAccept(req._id)}
@@ -107,7 +108,8 @@ const RequestedBookingTable = ({ requests }) => {
                       size="sm"
                       isDisabled={
                         req.status === "accepted" ||
-                        req.status === "rejected"
+                        req.status === "rejected" || 
+                        req.status === "paid" 
                       }
                       className="bg-red-500 text-white"
                       onPress={() => handleReject(req._id)}

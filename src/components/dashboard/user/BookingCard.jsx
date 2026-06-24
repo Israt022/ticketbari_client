@@ -50,10 +50,66 @@ const BookingCard = ({ booking }) => {
       {/* countdown (future use) */}
       <Countdown departureTime={booking.departureDateTime} />
 
-      {booking.status === "accepted" && (
-        <Button className="w-full bg-green-500 text-white">
-          Pay Now
-        </Button>
+      {booking.status === "accepted" && 
+       booking.paymentStatus !== "paid" && (
+        <form action="/api/payment" method="POST">
+          <input
+            type="hidden"
+            name="bookingId"
+            value={booking._id}
+          />
+
+          <input
+            type="hidden"
+            name="ticketId"
+            value={booking.ticketId}
+          />
+
+          <input
+            type="hidden"
+            name="ticketTitle"
+            value={booking.ticketTitle}
+          />
+
+          <input
+            type="hidden"
+            name="totalPrice"
+            value={booking.totalPrice}
+          />
+
+          <input
+            type="hidden"
+            name="quantity"
+            value={booking.quantity}
+          />
+
+          <input
+            type="hidden"
+            name="vendorId"
+            value={booking.vendorId}
+          />
+
+          <input
+            type="hidden"
+            name="fromLocation"
+            value={booking.fromLocation}
+          />
+
+          <input
+            type="hidden"
+            name="toLocation"
+            value={booking.toLocation}
+          />
+
+          <input
+            type="hidden"
+            name="image"
+            value={booking.image}
+          />
+          <Button type="submit" className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white">
+            Pay Now
+          </Button>
+        </form>
       )}
 
     </div>

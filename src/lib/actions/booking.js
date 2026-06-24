@@ -76,3 +76,20 @@ export const rejectBookingRequests= async(id) =>{
     return data || {};
 }
 
+// payment 
+export const paymentSuccess = async(id,paymentData) => {
+    const token = await getTokenServer();
+
+    const res = await fetch(`${baseUrl}/bookings/payment-success/${id}`,{
+        method : 'PATCH',
+        headers:{
+            "Content-Type": "application/json",
+            authorization : `Bearer ${token}`,
+        },
+        body: JSON.stringify(paymentData),
+    });
+    const data = await res.json();
+
+    return data;
+}
+

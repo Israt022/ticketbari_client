@@ -8,16 +8,20 @@ import { BiLogOut } from "react-icons/bi";
 import { authClient } from "@/lib/auth-client";
 import LogoutButton from "../shared/LogoutButton";
 import { CgProfile } from "react-icons/cg";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { CiCircleList } from "react-icons/ci";
+import { BsChatSquareQuote } from "react-icons/bs";
+import { FaChartBar } from "react-icons/fa";
 
 const DashboardSidebar = ({user}) => {
     // console.log(user,'dashboard sidebar');
 // console.log(user);
     const vendorNavLinks = [
         { icon: CgProfile, href: "/dashboard/vendor", label: "Vendor Profile" },
-        { icon: Magnifier, href: "/dashboard/vendor/add-ticket", label: "Add Ticket" },
-        { icon: Bell, href: "/dashboard/vendor/my-added-ticket", label: "My Added Tickets" },
-        { icon: Briefcase, href: "/dashboard/vendor/requested_bookings", label: "Requested Bookings" },
-        { icon: Envelope, href: "/dashboard/vendor/revenue", label: "Revenue Overview " },
+        { icon: IoIosAddCircleOutline, href: "/dashboard/vendor/add-ticket", label: "Add Ticket" },
+        { icon: CiCircleList, href: "/dashboard/vendor/my-added-ticket", label: "My Added Tickets" },
+        { icon: BsChatSquareQuote, href: "/dashboard/vendor/requested_bookings", label: "Requested Bookings" },
+        { icon: FaChartBar, href: "/dashboard/vendor/revenue", label: "Revenue Overview " },
     ]
 
     const userNavLinks = [
