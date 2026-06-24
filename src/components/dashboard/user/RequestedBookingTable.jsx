@@ -1,5 +1,6 @@
 "use client";
 
+import { acceptBookingRequests, rejectBookingRequests } from "@/lib/actions/booking";
 import {
   Table,
   Button,
@@ -11,19 +12,19 @@ import toast from "react-hot-toast";
 const RequestedBookingTable = ({ requests }) => {
 
   const handleAccept = async (id) => {
-    // const res = await acceptBooking(id);
+    const res = await acceptBookingRequests(id);
 
     // if (!res?.acknowledged) {
     //   toast.error(res?.message || "Failed to accept");
     //   return;
     // }
-    console.log(id);
+    console.log(res);
 
     toast.success("Booking accepted");
   };
 
   const handleReject = async (id) => {
-    // const res = await rejectBooking(id);
+    const res = await rejectBookingRequests(id);
 
     // if (!res?.acknowledged) {
     //   toast.error(res?.message || "Failed to reject");
@@ -39,10 +40,11 @@ const RequestedBookingTable = ({ requests }) => {
         <Table.Content>
 
           <Table.Header>
-            <Table.Column>User</Table.Column>
+            <Table.Column isRowHeader>User</Table.Column>
             <Table.Column>Ticket</Table.Column>
             <Table.Column>Quantity</Table.Column>
             <Table.Column>Total Price</Table.Column>
+            <Table.Column>Status</Table.Column>
             <Table.Column>Actions</Table.Column>
           </Table.Header>
 
@@ -72,12 +74,29 @@ const RequestedBookingTable = ({ requests }) => {
                 <Table.Cell>
                   ৳ {req.totalPrice}
                 </Table.Cell>
+                <Table.Cell>
+                  <span
+                    className={`px-2 py-1 rounded text-xs font-medium ${
+                      req.status === "accepted"
+                        ? "bg-green-100 text-green-600"
+                        : req.status === "rejected"
+                        ? "bg-red-100 text-red-600"
+                        : "bg-yellow-100 text-yellow-600"
+                    }`}
+                  >
+                    {req.status}
+                  </span>
+                </Table.Cell>
 
                 <Table.Cell>
                   <div className="flex gap-2">
 
                     <Button
                       size="sm"
+                      isDisabled={
+                        req.status === "accepted" ||
+                        req.status === "rejected"
+                      }
                       className="bg-green-500 text-white"
                       onPress={() => handleAccept(req._id)}
                     >
@@ -86,6 +105,10 @@ const RequestedBookingTable = ({ requests }) => {
 
                     <Button
                       size="sm"
+                      isDisabled={
+                        req.status === "accepted" ||
+                        req.status === "rejected"
+                      }
                       className="bg-red-500 text-white"
                       onPress={() => handleReject(req._id)}
                     >

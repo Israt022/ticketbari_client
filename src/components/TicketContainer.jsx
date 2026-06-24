@@ -5,16 +5,22 @@ import TicketControls from "./TicketControls";
 import AllTicketPage from "./AllTicketPage";
 import { Pagination } from "@heroui/react";
 import NoData from "./NoData";
+import { useEffect, useState } from "react";
 
 const TicketContainer = ({ tickets, total }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  
 
   const from = searchParams.get("from") || "";
   const to = searchParams.get("to") || "";
   const transport = searchParams.get("transport") || "all";
   const sort = searchParams.get("sort") || "";
   const page = Number(searchParams.get("page") || 1);
+  
+  const [localFrom, setLocalFrom] = useState(from);
+  const [localTo, setLocalTo] = useState(to);
 
   const itemsPerPage = 10;
   const totalPages = Math.ceil(total / itemsPerPage);
@@ -30,7 +36,7 @@ const TicketContainer = ({ tickets, total }) => {
     sp.set("page", "1");
 
     router.push(`/tickets?${sp.toString()}`);
-    router.refresh();
+    // router.refresh();
   };
 
   const handlePageChange = (p) => {
@@ -38,7 +44,7 @@ const TicketContainer = ({ tickets, total }) => {
     sp.set("page", p);
 
     router.push(`/tickets?${sp.toString()}`);
-    router.refresh();
+    // router.refresh();
   };
 
   const startItem = (page - 1) * itemsPerPage + 1;
@@ -65,14 +71,28 @@ const TicketContainer = ({ tickets, total }) => {
 
     return pages;
   };
+  useEffect(() => {
+  const timer = setTimeout(() => {
+    updateFilters({
+      from: localFrom,
+      to: localTo,
+    });
+  }, 500);
+
+  return () => clearTimeout(timer);
+}, [localFrom, localTo]);
 
   return (
     <>
       <TicketControls
-        from={from}
-        setFrom={(v) => updateFilters({ from: v })}
-        to={to}
-        setTo={(v) => updateFilters({ to: v })}
+        from={localFrom}
+        setFrom={setLocalFrom}
+        to={localTo}
+        setTo={setLocalTo}
+        // from={from}
+        // setFrom={(v) => updateFilters({ from: v })}
+        // to={to}
+        // setTo={(v) => updateFilters({ to: v })}
         transport={transport}
         setTransport={(v) => updateFilters({ transport: v })}
         sort={sort}

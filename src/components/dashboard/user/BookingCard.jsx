@@ -37,7 +37,13 @@ const BookingCard = ({ booking }) => {
         {booking.departureDateTime}
       </p>
 
-      <span className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-600">
+      <span className={`px-2 py-1 text-xs rounded ${
+                      booking.status === "accepted"
+                        ? "bg-green-100 text-green-600"
+                        : booking.status === "rejected"
+                        ? "bg-red-100 text-red-600"
+                        : "bg-yellow-100 text-yellow-600"
+                    }`}>
         {booking.status}
       </span>
 

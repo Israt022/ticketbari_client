@@ -47,4 +47,32 @@ export const getBookingRequests= async() =>{
 
     return data || {};
 }
+// accept vendor booking request
+export const acceptBookingRequests= async(id) =>{
+    const token = await getTokenServer();
+
+    const res = await fetch(`${baseUrl}/vendor/bookings/accept/${id}`,{
+        method : 'PATCH',
+        headers:{
+            authorization : `Bearer ${token}` || ""
+        }
+    });
+    const data = await res.json();
+
+    return data || {};
+}
+// accept vendor booking request
+export const rejectBookingRequests= async(id) =>{
+    const token = await getTokenServer();
+
+    const res = await fetch(`${baseUrl}/vendor/bookings/reject/${id}`,{
+        method : 'PATCH',
+        headers:{
+            authorization : `Bearer ${token}` || ""
+        }
+    });
+    const data = await res.json();
+
+    return data || {};
+}
 

@@ -7,7 +7,7 @@ const RequestedBookingPage = async() => {
     const bookingRequest = await getBookingRequests();
     const isEmpty = !bookingRequest || bookingRequest.length === 0;
 
-    console.log(bookingRequest,"Requests");
+    // console.log(bookingRequest,"Requests");
     return (
         <div className='flex flex-col space-y-3'>
             <div className='flex gap-1 items-center'>
