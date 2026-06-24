@@ -9,6 +9,9 @@ import Image from "next/image";
 export default async function Home() {
   const advertiseTicket = await getAdvertiseTickets();
   const latestTicket = await getTickets();
+
+  // console.log("Advertise Count:", advertiseTicket.length);
+  // console.log("Advertise ticket:", advertiseTicket);
   return (
     <div className="space-y-16">
       <Banner />
