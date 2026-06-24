@@ -1,36 +1,223 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+  🚍 TicketBari
+</h1>
 
-## Getting Started
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=600&size=24&pause=1200&color=3B82F6&center=true&vCenter=true&width=700&lines=Smart+Transport+Ticket+Booking+Platform;Book+Tickets+Securely+with+Stripe;Multi-Role+Dashboard+System;Search+•+Filter+•+Pay+•+Travel" />
+</p>
 
-First, run the development server:
+</div>
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" />
+  <img src="https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react" />
+  <img src="https://img.shields.io/badge/MongoDB-green?style=for-the-badge&logo=mongodb" />
+  <img src="https://img.shields.io/badge/Stripe-Payment-purple?style=for-the-badge&logo=stripe" />
+  <img src="https://img.shields.io/badge/JWT-Authentication-orange?style=for-the-badge" />
+</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<p align="center">
+  <b>A Complete Multi-Role Transport Ticket Booking System</b><br/>
+  Search, Book, Manage & Pay for Tickets with Secure Authentication and Stripe Payments.
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🌐 Live Links
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Frontend
 
-## Learn More
+https://ticketbari-client-steel.vercel.app/
 
-To learn more about Next.js, take a look at the following resources:
+### Backend
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+https://ticketbari-server-two.vercel.app/
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+# ✨ Key Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎫 Ticket Management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Browse all available transport tickets
+* View complete ticket details
+* Real-time ticket availability
+* Countdown timer before departure
+* Ticket quantity validation
+* Sold-out and expired ticket protection
+
+---
+
+## 🔍 Smart Search & Filtering
+
+Users can easily find tickets using:
+
+✅ Search by From Location
+
+✅ Search by To Location
+
+✅ Filter by Transport Type
+
+✅ Sort by Price (Low → High)
+
+✅ Sort by Price (High → Low)
+
+✅ Pagination Support (6–9 tickets per page)
+
+---
+
+# 🔐 Authentication & Security
+
+* User Registration
+* User Login
+* Role-Based Authorization
+* Protected Routes
+* JWT Protected APIs
+* Secure Session Handling
+
+---
+
+# 👤 User Dashboard
+
+### Profile
+
+* View Profile
+* Update Profile Information
+
+### Booking System
+
+* Book Tickets
+* View Booked Tickets
+* Real-time Booking Status
+
+### Payments
+
+* Stripe Checkout Integration
+* Secure Online Payments
+* Transaction History
+* Payment Confirmation
+* Payment Tracking
+
+---
+
+# 🏪 Vendor Dashboard
+
+### Ticket Management
+
+* Add New Tickets
+* Update Tickets
+* Delete Tickets
+* Manage Own Tickets
+
+### Booking Requests
+
+* View Booking Requests
+* Accept Requests
+* Reject Requests
+
+### Revenue Analytics
+
+* Total Tickets Added
+* Total Tickets Sold
+* Total Revenue
+* Revenue Overview Dashboard
+* Interactive Charts using Recharts
+
+---
+
+# 👨‍💼 Admin Dashboard
+
+### User Management
+
+* View All Users
+* Manage User Roles
+* Platform Monitoring
+
+### Ticket Management
+
+* Approve Tickets
+* Reject Tickets
+* Moderate Listings
+
+### Advertisement Management
+
+* Promote Tickets
+* Manage Advertisements
+
+---
+
+# 💳 Stripe Payment System
+
+TicketBari integrates Stripe for secure payment processing.
+
+### Features
+
+* Secure Checkout Session
+* Transaction Tracking
+* Payment Verification
+* Automatic Booking Updates
+* Revenue Calculation
+
+---
+
+# 📊 Analytics & Visualization
+
+Vendor Dashboard includes:
+
+* Revenue Overview
+* Total Tickets Added
+* Total Tickets Sold
+* Total Earnings
+* Interactive Charts
+* Business Insights
+
+---
+
+# 🌙 Modern UI Features
+
+✅ Fully Responsive Design
+
+✅ Mobile Friendly
+
+✅ Tablet Friendly
+
+✅ Full Width Dashboard
+
+✅ Consistent Design System
+
+✅ Dark / Light Theme
+
+✅ Modern User Experience
+
+---
+
+# 🛠️ Technologies Used
+
+## Frontend
+
+* Next.js 15
+* React 19
+* HeroUI
+* Tailwind CSS
+* React Icons
+* Lucide React
+* Recharts
+* React Hook Form
+* React Hot Toast
+
+## Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* JWT Authentication
+* Stripe API
+
+---
+
+# 👨‍💻 Developer
+
+### Israt Jahan
+
+Frontend Developer | React Developer | Next.js Enthusiast
+
+Built with ❤️ using Next.js, MongoDB, Stripe & HeroUI.
