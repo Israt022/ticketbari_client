@@ -10,7 +10,7 @@ const TransactionTable = ({
       <Table.ScrollContainer>
         <Table.Content aria-label="Transaction History">
           <Table.Header>
-            <Table.Column>
+            <Table.Column isRowHeader >
               Transaction ID
             </Table.Column>
 

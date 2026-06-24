@@ -111,3 +111,18 @@ export const toggleAdvertise = async(id)=>{
 
   return res.json();
 }
+
+export const getRevenueOverview = async () => {
+    const token = await getTokenServer();
+
+    const res = await fetch(
+        `${baseUrl}/vendor/revenue-overview`,
+        {
+        headers: {
+            authorization: `Bearer ${token}`,
+        },
+        }
+    );
+
+    return await res.json();
+};
