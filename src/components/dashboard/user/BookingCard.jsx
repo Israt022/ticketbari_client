@@ -6,6 +6,10 @@ import { Button } from "@heroui/react";
 import Countdown from "@/components/ticket/Countdown";
 
 const BookingCard = ({ booking }) => {
+  const isExpired = new Date(booking.departureDateTime) <= new Date();
+
+  const isSoldOut =Number(booking.quantity) <= 0;
+  
   return (
     <div className="border rounded-2xl p-4 space-y-3 shadow-sm">
 
@@ -51,7 +55,9 @@ const BookingCard = ({ booking }) => {
       <Countdown departureTime={booking.departureDateTime} />
 
       {booking.status === "accepted" && 
-       booking.paymentStatus !== "paid" && (
+       booking.paymentStatus !== "paid" &&
+       !isExpired &&
+      !isSoldOut && (
         <form action="/api/payment" method="POST">
           <input
             type="hidden"
